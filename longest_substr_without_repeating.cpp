@@ -45,3 +45,24 @@ public:
         return max_length;
     }
 };
+
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        unordered_map<char, size_t> chars_used;
+        auto it_from = s.begin();
+        auto it_to = s.begin();
+        int max_length = 0;
+        while (it_to != s.end()) {
+            auto it_prev = chars_used.find(*it_to);
+            if (it_prev != chars_used.end() &&
+                it_prev->second >= it_from - s.begin()) {
+                it_from = s.begin() + chars_used[*it_to] + 1;
+            }
+            chars_used[*it_to] = it_to - s.begin();
+            max_length = max(max_length, static_cast<int>(std::distance(it_from, it_to)) + 1);
+            ++it_to;
+        }
+        return max_length;
+    }
+};
