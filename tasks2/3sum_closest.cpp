@@ -1,5 +1,7 @@
 /*
 https://leetcode.com/problems/3sum-closest/
+
+ugly solusion with same complexity but without pre-sort
 */
 
 class Solution {
